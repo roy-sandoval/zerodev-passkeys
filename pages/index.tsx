@@ -1,17 +1,16 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
 import { ZeroDevConnector } from '@zerodev/wagmi';
 import { createPasskeyOwner, getPasskeyOwner } from '@zerodev/sdk/passkey';
 import { useConnect, configureChains, useAccount } from 'wagmi';
 import { chains } from './_app';
+import Withdraw from '../components/despositVault/Withdraw';
 
 const projectId = '71445dcd-5a18-4412-b501-1b14a5df2aa7';
 
 const Home: NextPage = () => {
    const { connect } = useConnect();
-   const { address, isConnected } = useAccount();
+   const { isConnected } = useAccount();
 
    const handleRegister = async () => {
       connect({
@@ -41,11 +40,9 @@ const Home: NextPage = () => {
 
    return (
       <div>
-         <div>{isConnected ? 'logged in' : 'not logged in'}</div>
-         <div>{address ? address : null}</div>
          {isConnected ? (
             <>
-               <button>Withdraw Funds</button>
+               <Withdraw />
             </>
          ) : (
             <>

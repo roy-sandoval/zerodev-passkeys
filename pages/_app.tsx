@@ -4,11 +4,13 @@ import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import type { AppProps } from 'next/app';
 import { configureChains, createConfig, WagmiConfig } from 'wagmi';
 import { optimismGoerli } from 'wagmi/chains';
+import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
+import 'dotenv/config';
 
 export const { chains, publicClient, webSocketPublicClient } = configureChains(
    [optimismGoerli],
-   [publicProvider()]
+   [alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
@@ -18,7 +20,7 @@ const { connectors } = getDefaultWallets({
 });
 
 const wagmiConfig = createConfig({
-   autoConnect: true,
+   autoConnect: false,
    connectors,
    publicClient,
    webSocketPublicClient,
