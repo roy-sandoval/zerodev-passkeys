@@ -11,7 +11,9 @@
   "dependencies": {
     "@rainbow-me/rainbowkit": "^1.0.8",
     "@turnkey/http": "^1.0.1",
+    "@zerodev/sdk": "^4.0.1",
     "@zerodev/wagmi": "^4.0.0",
+    "ethers": "^6.7.1",
     "next": "^13.4.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
